@@ -2,27 +2,6 @@
 using System.Collections;
 using System;
 
-public class EventData:EventBase {
-    public object[] args=null;
-    public EventData(Enum eid){
-        this.eid = eid;
-    }
-    public EventData(Enum eid,params object[] args)
-    {
-        this.eid = eid;
-        this.args = args;
-    }
-    public static EventData CreateEvent(Enum e)
-    {
-        EventData eventBase = new EventData(e);
-        return eventBase;
-    }
-    public static EventData CreateEvent(Enum e,params object[] args)
-    {
-        EventData eventBase = new EventData(e, args);
-        return eventBase;
-    }
-}
 public class EventData<T> : EventBase
 {
     public T[] args = null;
@@ -35,17 +14,39 @@ public class EventData<T> : EventBase
         this.eid = eid;
         this.args = args;
     }
-    public static EventData CreateEvent(Enum e)
+    public static EventData<T> CreateEvent(Enum e)
     {
-        EventData eventBase = new EventData(e);
+        EventData<T> eventBase = new EventData<T>(e);
         return eventBase;
     }
-    public static EventData CreateEvent(Enum e, params object[] args)
+    public static EventData<T> CreateEvent(Enum e, params T[] args)
     {
-        EventData eventBase = new EventData(e, args);
+        EventData<T> eventBase = new EventData<T>(e, args);
         return eventBase;
     }
 }
+//public class EventString : EventData<string>
+//{
+//    public EventString(Enum eid) : base(sg)
+//    {
+//        this.eid = eid;
+//    }
+//    public EventData(Enum eid, params T[] args)
+//    {
+//        this.eid = eid;
+//        this.args = args;
+//    }
+//    public static EventData<T> CreateEvent(Enum e)
+//    {
+//        EventData<T> eventBase = new EventData<T>(e);
+//        return eventBase;
+//    }
+//    public static EventData<T> CreateEvent(Enum e, params T[] args)
+//    {
+//        EventData<T> eventBase = new EventData<T>(e, args);
+//        return eventBase;
+//    }
+//}
 public class EventBase
 {
     public Enum eid;
