@@ -1,7 +1,8 @@
 # EventSystem
 事件系统
 
-`public class EventTest : MonoBehaviour, IEventHandler
+```c#
+public class EventTest : MonoBehaviour, IEventHandler
 {
     /// <summary>
     /// 事件处理器
@@ -27,5 +28,6 @@
     {
         EventData<string>.CreateEvent(MessageType.login, "122216637", "password").Send();
     }
-}`
+}```
+```
 
