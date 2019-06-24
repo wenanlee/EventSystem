@@ -28,6 +28,6 @@ public class EventTest : MonoBehaviour, IEventHandler
     {
         EventData<string>.CreateEvent(MessageType.login, "122216637", "password").Send();
     }
-}```
+}
 ```
 
