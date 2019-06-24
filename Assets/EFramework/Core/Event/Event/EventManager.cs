@@ -3,25 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EventManager
+public class EventManager:Singleton<EventManager>
 {
     private Dictionary<Enum, Action<EventBase>> HandlerList = new Dictionary<Enum, Action<EventBase>>();
-    private static EventManager instance;
 
-    public static EventManager Instance
+    public void SendEvent(EventBase eventBase)
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new EventManager();
-            }
-            return instance;
-        }
-    }
-
-    internal void SendEvent(EventBase eventBase)
-    {
+        Action<EventBase> action;
         HandlerList[eventBase.eid].Invoke(eventBase);
     }
     /// <summary>
@@ -47,6 +35,7 @@ public class EventManager
     /// <param name="enums"></param>
     public void Registration(Action<EventBase> action,params Enum[] enums)
     {
+        
         for (int i = 0; i < enums.Length; i++)
         {
             Registration(enums[i], action);
